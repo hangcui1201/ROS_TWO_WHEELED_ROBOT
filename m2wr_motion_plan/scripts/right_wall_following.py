@@ -51,14 +51,6 @@ def laser_callback(msg):
         'fleft': min(min(msg.ranges[108:143]), 5),
         'left': min(min(msg.ranges[144:179]), 5)  # left side of the robot
     }
-
-    # regions_ = {
-    #     'right':  min(min(msg.ranges[0:143]), 10),
-    #     'fright': min(min(msg.ranges[144:287]), 10),
-    #     'front':  min(min(msg.ranges[288:431]), 10),
-    #     'fleft':  min(min(msg.ranges[432:575]), 10),
-    #     'left':   min(min(msg.ranges[576:719]), 10),
-    # }
     
     take_action()
 
