@@ -33,8 +33,12 @@ Goal: [0, -6]
 $ roslaunch m2wr_description spawn.launch x:=0 y:=8  
 $ roslaunch m2wr_motion_plan bug0_algorithm.launch  
 
+<a href="url"><img src="./images/bug0_demo.jpg" width="550"></a>  
 <a href="url"><img src="./images/bug0_algorithm.gif" width="500"></a>  
 
+#### Bug 1 Algorithm
+Initial: [0, 8]  
+Goal: [0, -6]  
 
 $ rosrun teleop_twist_keyboard teleop_twist_keyboard.py  
 $ rosrun m2wr_motion_plan reading_laserscan.py  
