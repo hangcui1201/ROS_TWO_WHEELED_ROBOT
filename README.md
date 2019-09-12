@@ -27,6 +27,9 @@ $ rosservice call /right_wall_following_switch "data: true"
 
 
 #### Bug 0 Algorithm
+Initial: [0, 8]  
+Goal: [0, -6]  
+  
 $ roslaunch m2wr_description spawn.launch x:=0 y:=8  
 $ roslaunch m2wr_motion_plan bug0_algorithm.launch  
 
