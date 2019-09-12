@@ -6,12 +6,16 @@
 $ roslaunch m2wr_description spawn.launch y:=2  
 $ rosrun m2wr_motion_plan obstacle_avoidance.py  
 
+
 #### Go to Goal
-$ roslaunch m2wr_description spawn.launch y:=2  
+$ roslaunch m2wr_description spawn.launch x:=-7 y:=3  
+$ rosparam set /goal_x 5  
+$ rosparam set /goal_y 1  
 $ rosrun m2wr_motion_plan go_to_goal.py  
 $ rosservice call /go_to_goal_switch "data: true"  
-$ rosparam set /goal '[3, 1]'  
 $ rosservice call /go_to_goal_switch "data: false"  
+
+<a href="url"><img src="./images/go_to_goal.gif" width="500"></a>  
 
 #### Right Wall Following
 $ roslaunch m2wr_description spawn.launch y:=2  
