@@ -26,8 +26,9 @@ dist_precision_ = 0.3
 
 # Goal location
 desired_position_ = Point()
-goal_ = [-4, 3]
-rospy.set_param('goal', goal_)
+desired_position_.x = rospy.get_param('goal_x')
+desired_position_.y = rospy.get_param('goal_y')
+desired_position_.z = 0
 
 # Service callback
 def go_to_goal_switch(request):
@@ -136,7 +137,7 @@ def done():
 
 def main():
 
-    global pub, active_, desired_position_, goal_, state_
+    global pub, active_, desired_position_, state_
     
     rospy.init_node('go_to_goal')
     
@@ -149,28 +150,28 @@ def main():
     while not rospy.is_shutdown():
 
         if not active_:
-			print("Robot is disabled!")
+			# print("Robot is disabled!")
 			continue
         else:
 
-        	goal_x = rospy.get_param('goal')[0] # x
-        	goal_y = rospy.get_param('goal')[1] # y
+            goal_x = rospy.get_param('goal_x')
+            goal_y = rospy.get_param('goal_y')
 
-        	print("Robot is running, goal: %s, %s" % (goal_x, goal_y))
-        	print("Robot state: %s" % state_)
+            print("Robot is running, goal: %s, %s" % (goal_x, goal_y))
+            # print("Robot state: %s" % state_)
 
-        	desired_position_.x = goal_x
-        	desired_position_.y = goal_y
-        	desired_position_.z = 0
+            desired_position_.x = goal_x
+            desired_position_.y = goal_y
+            desired_position_.z = 0
 
-        	if state_ == 0:
-        		fix_yaw(desired_position_)
-        	elif state_ == 1:
-        		go_straight_ahead(desired_position_)
-        	elif state_ == 2:
-        		done()
-        	else:
-        		rospy.logerr('Unknown state!')
+            if state_ == 0:
+                fix_yaw(desired_position_)
+            elif state_ == 1:
+                go_straight_ahead(desired_position_)
+            elif state_ == 2:
+                done()
+            else:
+                rospy.logerr('Unknown state!')
         
         rate.sleep()
 
