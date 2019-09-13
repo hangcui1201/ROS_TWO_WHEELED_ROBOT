@@ -10,7 +10,6 @@ from gazebo_msgs.srv import SetModelState
 from std_srvs.srv import *
 
 import numpy as np
-# import math
 
 srv_client_go_to_point_ = None
 srv_client_wall_follower_ = None
@@ -23,11 +22,6 @@ initial_position_ = Point()
 initial_position_.x = rospy.get_param('init_x')
 initial_position_.y = rospy.get_param('init_y')
 initial_position_.z = 0
-
-# desired_position_ = Point()
-# desired_position_.x = rospy.get_param('goal')[0] # x
-# desired_position_.y = rospy.get_param('goal')[1] # y
-# desired_position_.z = 0
 
 desired_position_ = Point()
 desired_position_.x = rospy.get_param('goal_x')
