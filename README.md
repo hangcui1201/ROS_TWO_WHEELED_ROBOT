@@ -27,14 +27,25 @@ $ rosservice call /right_wall_following_switch "data: true"
 
 
 #### Bug 0 Algorithm
+
+<!-- <a href="url"><img src="./images/bug0_demo.jpg" width="550"></a> -->
+
 Initial: [0, 8]  
 Goal: [0, -6]  
   
 $ roslaunch m2wr_description spawn.launch x:=0 y:=8  
 $ roslaunch m2wr_motion_plan bug0_algorithm.launch  
 
-<a href="url"><img src="./images/bug0_demo.jpg" width="550"></a>  
+
 <a href="url"><img src="./images/bug0_algorithm.gif" width="500"></a>  
+
+#### Bug 0 Algorithm Failure Case
+Initial: [0, 8]  
+Goal: [0, -6]  
+  
+$ roslaunch m2wr_description spawn.launch world:= world_3 x:=0 y:=8  
+$ roslaunch m2wr_motion_plan bug0_algorithm.launch  
+
 
 #### Bug 1 Algorithm
 Initial: [0, 8]  
