@@ -8,7 +8,8 @@ $ rosrun m2wr_motion_plan obstacle_avoidance.py
 
 
 #### Go to Goal
-$ roslaunch m2wr_description spawn.launch x:=-7 y:=3  
+$ export world=world_02
+$ roslaunch m2wr_description spawn.launch world:= world_02 x:=-7 y:=3  
 $ rosparam set /goal_x 5  
 $ rosparam set /goal_y 1  
 $ rosrun m2wr_motion_plan go_to_goal.py  
