@@ -8,11 +8,12 @@
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
     </include>
     -->
-  
-    <include file="$(find m2wr_worlds)/launch/world.launch">
+
+    <include file="$(find m2wr_worlds)/launch/$(env world).launch">
     </include>
 
     <param name="robot_description" command="xacro --inorder '$(find m2wr_description)/urdf/m2wr.xacro'"/>
+
     <arg name="x" default="0"/>
     <arg name="y" default="0"/>
     <arg name="z" default="0.5"/>
