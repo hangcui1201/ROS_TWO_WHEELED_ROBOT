@@ -61,8 +61,14 @@ $ roslaunch m2wr_motion_plan bug0_algorithm.launch goal_x:=2 goal_y:=-3
 #### Bug 1 Algorithm
 
 Initial: [0, 8]  
-Goal: [0, -6]  
+Goal: [2, -3]  
+  
+$ export world=world_03  
+$ roslaunch m2wr_description spawn.launch x:=0 y:=8  
+$ roslaunch m2wr_motion_plan bug1_algorithm.launch goal_x:=2 goal_y:=-3  
 
+<a href="url"><img src="./images/bug1_demo.jpg" width="550"></a>
+<a href="url"><img src="./images/bug1_algorithm.gif" width="500"></a>  
 
   
 $ rosrun teleop_twist_keyboard teleop_twist_keyboard.py  
