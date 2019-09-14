@@ -43,8 +43,7 @@ $ rosservice call /right_wall_following_switch "data: true"
 
 #### Bug 0 Algorithm
 
-Initial: [0, 8]  
-Goal: [0, -6]  
+Initial: [0, 8] Goal: [0, -6]  
   
 $ export world=world_02  
 $ roslaunch m2wr_description spawn.launch x:=0 y:=8  
@@ -56,12 +55,11 @@ $ roslaunch m2wr_motion_plan bug0_algorithm.launch
 
 #### Bug 0 Algorithm Failure Case
 
-Initial: [0, 8]  
-Goal: [2, -3]  
+Initial: [0, 8] Goal: [0, -3]  
   
 $ export world=world_03  
 $ roslaunch m2wr_description spawn.launch x:=0 y:=8  
-$ roslaunch m2wr_motion_plan bug0_algorithm.launch goal_x:=2 goal_y:=-3  
+$ roslaunch m2wr_motion_plan bug0_algorithm.launch goal_x:=0 goal_y:=-3  
 
 <a href="url"><img src="./images/bug0_demo.jpg" width="450"></a>
 <a href="url"><img src="./images/bug0_algorithm_failure.gif" width="400"></a>  
@@ -69,8 +67,7 @@ $ roslaunch m2wr_motion_plan bug0_algorithm.launch goal_x:=2 goal_y:=-3
 
 #### Bug 1 Algorithm
 
-Initial: [0, 8]  
-Goal: [2, -3]  
+Initial: [0, 8] Goal: [0, -3]  
   
 $ export world=world_03  
 $ roslaunch m2wr_description spawn.launch x:=0 y:=8  
@@ -80,6 +77,6 @@ $ roslaunch m2wr_motion_plan bug1_algorithm.launch goal_x:=0 goal_y:=-3
 <a href="url"><img src="./images/bug1_algorithm.gif" width="400"></a>  
 
   
-
+#---
 $ rosrun m2wr_motion_plan reading_laserscan.py  
 $ roslaunch m2wr_description rviz.launch  
