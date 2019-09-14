@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+    <arg name="init_x" default="0" />
+    <arg name="init_y" default="8" />
+    <arg name="goal_x" default="2" />
+    <arg name="goal_y" default="-3" />
+    <param name="init_x" value="$(arg init_x)" />
+    <param name="init_y" value="$(arg init_y)" />
+    <param name="goal_x" value="$(arg goal_x)" />
+    <param name="goal_y" value="$(arg goal_y)" />
+    <node pkg="m2wr_motion_plan" type="right_wall_following.py" name="right_wall_following" />
+    <node pkg="m2wr_motion_plan" type="go_to_goal.py" name="go_to_goal" />
+    <node pkg="m2wr_motion_plan" type="bug1_algorithm.py" name="bug1" output="screen" />
+</launch>
