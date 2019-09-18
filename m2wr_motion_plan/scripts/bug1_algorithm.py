@@ -11,7 +11,7 @@ from std_srvs.srv import *
 
 import numpy as np
 
-srv_client_go_to_point_ = None
+srv_client_go_to_goal_ = None
 srv_client_wall_follower_ = None
 
 yaw_ = 0
@@ -30,7 +30,7 @@ desired_position_.z = 0
 
 regions_ = None
 
-state_desc_ = ['Go to point', 'circumnavigate obstacle', 'go to closest point']
+state_desc_ = ['Go to point', 'Circumnavigate obstacle', 'Go to closest point']
 state_ = 0
 # 0 - go to point
 # 1 - circumnavigate
@@ -82,7 +82,7 @@ def laser_callback(msg):
 def change_state(state):
 
     global state_, state_desc_
-    global srv_client_wall_follower_, srv_client_go_to_point_
+    global srv_client_wall_follower_, srv_client_go_to_goal_
     global count_state_time_
 
     count_state_time_ = 0
@@ -92,17 +92,17 @@ def change_state(state):
 
     # 0 - go to point
     if state_ == 0:
-        resp = srv_client_go_to_point_(True)
+        resp = srv_client_go_to_goal_(True)
         resp = srv_client_wall_follower_(False)
 
     # 1 - circumnavigate
     if state_ == 1:
-        resp = srv_client_go_to_point_(False)
+        resp = srv_client_go_to_goal_(False)
         resp = srv_client_wall_follower_(True)
 
     # 2 - go to closest point
     if state_ == 2:
-        resp = srv_client_go_to_point_(False)
+        resp = srv_client_go_to_goal_(False)
         resp = srv_client_wall_follower_(True)
 
 
@@ -120,7 +120,7 @@ def normalize_angle(angle):
 def main():
 
     global regions_, position_, desired_position_, state_, yaw_, yaw_error_allowed_
-    global srv_client_go_to_point_, srv_client_wall_follower_
+    global srv_client_go_to_goal_, srv_client_wall_follower_
     global circumnavigate_closest_point_, circumnavigate_starting_point_
     global count_loop_, count_state_time_
     
@@ -133,7 +133,7 @@ def main():
     rospy.wait_for_service('/right_wall_following_switch')
     rospy.wait_for_service('/gazebo/set_model_state')
     
-    srv_client_go_to_point_ = rospy.ServiceProxy('/go_to_goal_switch', SetBool)
+    srv_client_go_to_goal_ = rospy.ServiceProxy('/go_to_goal_switch', SetBool)
     srv_client_wall_follower_ = rospy.ServiceProxy('/right_wall_following_switch', SetBool)
     srv_client_set_model_state = rospy.ServiceProxy('/gazebo/set_model_state', SetModelState)
     

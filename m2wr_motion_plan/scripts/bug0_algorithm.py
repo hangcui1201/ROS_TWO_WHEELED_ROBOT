@@ -11,7 +11,7 @@ from std_srvs.srv import *
 
 import numpy as np
 
-srv_client_go_to_point_ = None
+srv_client_go_to_goal_ = None
 srv_client_wall_follower_ = None
 
 yaw_ = 0
@@ -30,7 +30,7 @@ desired_position_.z = 0
 
 regions_ = None
 
-state_desc_ = ['Go to point', 'wall following']
+state_desc_ = ['Go to goal', 'Right wall following']
 state_ = 0
 
 
@@ -72,18 +72,18 @@ def laser_callback(msg):
 def change_state(state):
 
     global state_, state_desc_
-    global srv_client_wall_follower_, srv_client_go_to_point_
+    global srv_client_wall_follower_, srv_client_go_to_goal_
 
     state_ = state
 
     rospy.loginfo("State changed: %s" % state_desc_[state])
 
     if state_ == 0:
-        resp = srv_client_go_to_point_(True)
+        resp = srv_client_go_to_goal_(True)
         resp = srv_client_wall_follower_(False)
 
     if state_ == 1:
-        resp = srv_client_go_to_point_(False)
+        resp = srv_client_go_to_goal_(False)
         resp = srv_client_wall_follower_(True)
         
 
@@ -96,7 +96,7 @@ def normalize_angle(angle):
 def main():
 
     global regions_, position_, desired_position_, state_, yaw_, yaw_error_allowed_
-    global srv_client_go_to_point_, srv_client_wall_follower_
+    global srv_client_go_to_goal_, srv_client_wall_follower_
     
     rospy.init_node('bug0_algorithm')
     
@@ -107,7 +107,7 @@ def main():
     rospy.wait_for_service('/right_wall_following_switch')
     rospy.wait_for_service('/gazebo/set_model_state')
     
-    srv_client_go_to_point_ = rospy.ServiceProxy('/go_to_goal_switch', SetBool)
+    srv_client_go_to_goal_ = rospy.ServiceProxy('/go_to_goal_switch', SetBool)
     srv_client_wall_follower_ = rospy.ServiceProxy('/right_wall_following_switch', SetBool)
     srv_client_set_model_state = rospy.ServiceProxy('/gazebo/set_model_state', SetModelState)
 
