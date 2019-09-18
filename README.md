@@ -49,7 +49,7 @@ $ export world=world_02
 $ roslaunch m2wr_description spawn.launch x:=0 y:=8  
 $ roslaunch m2wr_motion_plan bug0_algorithm.launch  
 
-<a href="url"><img src="./images/bug0_demo.jpg" width="450"></a>
+<!--<a href="url"><img src="./images/bug0_demo.jpg" width="450"></a> -->
 <a href="url"><img src="./images/bug0_algorithm.gif" width="400"></a>  
 
 
