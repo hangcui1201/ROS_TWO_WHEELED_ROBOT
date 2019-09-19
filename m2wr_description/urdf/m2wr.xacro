@@ -3,9 +3,12 @@
 <!-- Declare the robot name -->
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="m2wr">
 
-  <!-- Include other xacro files-->
-  <xacro:include filename="$(find m2wr_description)/urdf/materials.xacro" />
+  <!-- Import all Gazebo-customization elements, including Gazebo colors -->
   <xacro:include filename="$(find m2wr_description)/urdf/m2wr.gazebo" />
+
+  <!-- Import Rviz colors -->
+  <xacro:include filename="$(find m2wr_description)/urdf/materials.xacro" />
+
   <xacro:include filename="$(find m2wr_description)/urdf/macros.xacro" />
 
   <!-- Define chassis link of the robot, the base_link -->
@@ -194,6 +197,29 @@
     <joint_properties damping="1.0" friction="1.0"/>
   </joint>
   -->
+
+
+  <transmission name="tran1">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="joint_right_wheel">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor1">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran2">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="joint_left_wheel">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor2">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
 
 
 </robot>
