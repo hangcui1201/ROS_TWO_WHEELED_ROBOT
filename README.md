@@ -2,10 +2,16 @@
 
 ### ROS version: Kinetic (Ubuntu 16.04)
 
+### Rviz Visualization
+$ roslaunch m2wr_description rviz.launch  
+
+<a href="url"><img src="./images/m2wr_rviz.png" width="400"></a>  
+
 #### Navigation using Keyboard
 
 $ export world=world_01  
 $ roslaunch m2wr_description spawn.launch  
+$ rosrun m2wr_motion_plan reading_laserscan.py  
 $ rosrun teleop_twist_keyboard teleop_twist_keyboard.py  
 
 <a href="url"><img src="./images/nav_keyboard.gif" width="400"></a>  
@@ -85,10 +91,5 @@ $ export world=world_02
 $ roslaunch m2wr_description spawn.launch x:=0 y:=8  
 $ roslaunch m2wr_motion_plan bug2_algorithm.launch goal_x:=0 goal_y:=-4  
 
-<a href="url"><img src="./images/bug2_demo.jpg" width="450"></a>
+<a href="url"><img src="./images/bug2_demo.jpg" width="450"></a>  
 <a href="url"><img src="./images/bug2_algorithm.gif" width="400"></a>  
-
-  
-#---
-$ rosrun m2wr_motion_plan reading_laserscan.py  
-$ roslaunch m2wr_description rviz.launch  
